@@ -1,0 +1,9 @@
+FROM jenkins/jenkins:lts
+USER root
+RUN apt-get update && \
+	apt-get install -y jq curl python3-pip && \
+	apt clean && \
+	apt clean all && \
+	curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
+	chmod +x /usr/local/bin/docker-compose
+USER jenkins
